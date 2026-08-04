@@ -89,19 +89,24 @@ def build_html(resume: dict, n_projects: int = 4, n_certs: int = 4, max_bullets:
     template_path = _HERE / "template.html"
     template = template_path.read_text(encoding="utf-8")
 
-    return template.format(
-        name=name,
-        email=email,
-        phone=phone,
-        location=location,
-        github=github,
-        portfolio=portfolio,
-        github_s=github_s,
-        portfolio_s=portfolio_s,
-        summary=summary,
-        education=education,
-        skills_html=skills_html,
-        projects_html=projects_html,
-        exp_html=exp_html,
-        certs_html=certs_html,
-    )
+    replacements = {
+        "{name}": name,
+        "{email}": email,
+        "{phone}": phone,
+        "{location}": location,
+        "{github}": github,
+        "{portfolio}": portfolio,
+        "{github_s}": github_s,
+        "{portfolio_s}": portfolio_s,
+        "{summary}": summary,
+        "{education}": education,
+        "{skills_html}": skills_html,
+        "{projects_html}": projects_html,
+        "{exp_html}": exp_html,
+        "{certs_html}": certs_html,
+    }
+
+    for k, v in replacements.items():
+        template = template.replace(k, str(v))
+
+    return template
