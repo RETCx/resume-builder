@@ -1,0 +1,54 @@
+{
+  "name": "Name Surname",
+  "email": "[EMAIL_ADDRESS]",
+  "phone": "+1 (555) 123-4567899",
+  "location": "City, Country",
+  "github": "https://guthib.io/NameSurname",
+  "portfolio": "https://namesurname.io",
+  "summary": "Software Engineer with 3+ years of experience specializing in Python, backend development, and AI engineering. Passionate about building scalable systems.",
+  "education": "B.S. Computer Science, State University (2023)",
+  "skills": {
+    "languages": ["Python", "JavaScript", "SQL", "Go"],
+    "frameworks": ["FastAPI", "React", "Next.js", "PyTorch"],
+    "tools": ["Git", "Docker", "AWS", "GitHub Actions"],
+    "data": ["Machine Learning", "ETL Pipelines"]
+  },
+  "spoken_languages": "English (Native), Spanish (Basic)",
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "Tech Corp",
+      "period": "Jun 2023 – Present",
+      "bullets": [
+        "Developed and maintained RESTful APIs using FastAPI and PostgreSQL, serving 10,000+ daily active users.",
+        "Implemented automated CI/CD pipelines reducing deployment time by 40%."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "order": 1,
+      "name": "AI Document Analyzer",
+      "year": "2024",
+      "tech": ["Python", "LangChain", "OpenAI API", "React"],
+      "bullets": [
+        "Built a RAG-based document analysis tool capable of processing 100+ page PDFs in seconds.",
+        "Created an intuitive frontend using React and Tailwind CSS for seamless user interaction."
+      ]
+    },
+    {
+      "order": 2,
+      "name": "E-commerce Microservices",
+      "year": "2023",
+      "tech": ["Go", "Docker", "RabbitMQ", "Redis"],
+      "bullets": [
+        "Architected a scalable microservices backend for an e-commerce platform using Go.",
+        "Integrated Redis caching to improve product listing load times by 60%."
+      ]
+    }
+  ],
+  "certifications": [
+    "AWS Certified Developer - Associate (2024)",
+    "Meta Backend Developer Certificate (2023)"
+  ]
+}

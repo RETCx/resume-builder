@@ -1,0 +1,7 @@
+# Resume Builder — dependencies
+
+# UI
+rich>=13.7.0
+
+# PDF generation (ต้องรัน: playwright install chromium)
+playwright>=1.44.0
