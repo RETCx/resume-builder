@@ -6,7 +6,7 @@ __pycache__/
 # Output files
 output/
 *.pdf
-*.html
+output/*.html
 
 # Environments
 .env
