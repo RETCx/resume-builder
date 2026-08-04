@@ -1,7 +1,7 @@
 # Resume Builder
 
 Convert `resume.json` → HTML → PDF via **Playwright**.  
-Runs independently without relying on the main job-hunter project or any LLMs.
+A standalone, fully automated tool to generate beautiful, tailored resumes.
 
 ---
 

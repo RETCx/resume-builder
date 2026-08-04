@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 
 def _t(text: str) -> str:
     """Encode text for HTML: Convert all non-ASCII characters to &#NNN; entities
@@ -83,102 +85,23 @@ def build_html(resume: dict, n_projects: int = 4, n_certs: int = 4, max_bullets:
     summary    = _t(resume.get("summary", ""))
     education  = _t(resume.get("education", ""))
 
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-* {{ margin:0; padding:0; box-sizing:border-box; }}
-body {{
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  font-size: 11pt;
-  color: #1a1a1a;
-  line-height: 1.35;
-  padding: 8mm 8mm;
-}}
+    _HERE = Path(__file__).parent
+    template_path = _HERE / "template.html"
+    template = template_path.read_text(encoding="utf-8")
 
-/* ── Header ─────────────────────────────── */
-.header {{ text-align:center; margin-bottom:9px; padding-bottom:7px; border-bottom:2px solid #1a56a0; }}
-.name {{ font-size:1.9em; font-weight:700; letter-spacing:.5px; color:#111; margin-bottom:4px; }}
-.contact {{ font-size:0.99em; color:#555; }}
-.contact a {{ color:#1a56a0; text-decoration:none; }}
-.contact a:hover {{ text-decoration:underline; }}
-
-/* ── Section ─────────────────────────────── */
-.section {{ margin-bottom:7px; }}
-.section-title {{
-  font-size:1em; font-weight:700;
-  text-transform:uppercase; letter-spacing:1.2px;
-  color:#1a56a0;
-  border-bottom:1px solid #c8d9ef;
-  padding-bottom:2px; margin-bottom:4px;
-}}
-
-/* ── Skills ──────────────────────────────── */
-.skill-row {{ font-size:0.97em; margin-bottom:1.5px; line-height:1.35; }}
-.sk-label {{ font-weight:600; color:#1a56a0; }}
-
-/* ── Entry ───────────────────────────────── */
-.entry {{ margin-bottom:5px; }}
-.row {{ display:flex; justify-content:space-between; align-items:baseline; }}
-.entry-title {{ font-weight:700; font-size:1em; color:#111; }}
-.date {{ font-size:0.88em; color:#1a56a0; font-weight:600; white-space:nowrap; margin-left:8px; }}
-.subtitle {{ font-size:0.92em; color:#555; margin-bottom:1px; }}
-ul {{ padding-left:14px; margin-top:2px; }}
-li {{ margin-bottom:1px; line-height:1.35; }}
-.tech {{ font-size:0.88em; color:#555; margin-top:2px; }}
-.tech strong {{ color:#1a56a0; font-weight:600; }}
-
-/* ── Certifications — 2 columns ─────────── */
-.cert-list {{ padding-left:14px; columns:2; column-gap:16px; }}
-.cert-list li {{ margin-bottom:2px; break-inside:avoid; font-size:0.97em; }}
-
-@page {{ size: A4; margin: 0; }}
-@media print {{ body {{ padding: 11mm 14mm; }} }}
-</style>
-</head>
-<body>
-
-<div class="header">
-  <div class="name">{name}</div>
-  <div class="contact">
-    {location} &nbsp;|&nbsp; {phone} &nbsp;|&nbsp;
-    <a href="mailto:{email}">{email}</a> &nbsp;|&nbsp;
-    GitHub: <a href="{github}">{github_s}</a> &nbsp;|&nbsp;
-    Portfolio: <a href="{portfolio}">{portfolio_s}</a>
-  </div>
-</div>
-
-<div class="section">
-  <div class="section-title">Summary</div>
-  <div>{summary}</div>
-</div>
-
-<div class="section">
-  <div class="section-title">Education</div>
-  <div style="font-weight:600">{education}</div>
-</div>
-
-<div class="section">
-  <div class="section-title">Technical Skills</div>
-  {skills_html}
-</div>
-
-<div class="section">
-  <div class="section-title">Projects</div>
-  {projects_html}
-</div>
-
-<div class="section">
-  <div class="section-title">Experience</div>
-  {exp_html}
-</div>
-
-<div class="section">
-  <div class="section-title">Certifications &amp; Training</div>
-  <ul class="cert-list">{certs_html}</ul>
-</div>
-
-</body>
-</html>"""
+    return template.format(
+        name=name,
+        email=email,
+        phone=phone,
+        location=location,
+        github=github,
+        portfolio=portfolio,
+        github_s=github_s,
+        portfolio_s=portfolio_s,
+        summary=summary,
+        education=education,
+        skills_html=skills_html,
+        projects_html=projects_html,
+        exp_html=exp_html,
+        certs_html=certs_html,
+    )
