@@ -32,11 +32,16 @@ def build_html(resume: dict, n_projects: int = 4, n_certs: int = 4, max_bullets:
     skills = resume.get("skills", {})
     spoken = resume.get("spoken_languages", "")
 
+    standard_labels = {
+        "languages": "Languages",
+        "frameworks": "Libraries / Frameworks",
+        "tools": "Tools",
+        "data": "Data &amp; Analysis",
+    }
+
     skill_rows = [
-        ("Languages",           skills.get("languages", [])),
-        ("Libraries / Frameworks", skills.get("frameworks", [])),
-        ("Tools",               skills.get("tools", [])),
-        ("Data &amp; Analysis", skills.get("data", [])),
+        (standard_labels.get(k, k), items)
+        for k, items in skills.items()
     ]
     skills_html = "\n".join(
         f'<div class="skill-row"><span class="sk-label">{lbl}:</span> {_t(", ".join(items))}</div>'
