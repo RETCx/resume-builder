@@ -58,9 +58,16 @@ def build_html(resume: dict, n_projects: int = 4, n_certs: int = 4, max_bullets:
     for p in all_projects[:n_projects]:
         bullets = "".join(f"<li>{_t(b)}</li>" for b in p.get("bullets", [])[:max_bullets])
         tech = _t(", ".join(p.get("tech", [])))
+        links_html = ""
+        demo_url = p.get("demo") or p.get("demoUrl")
+        github_url = p.get("github") or p.get("githubUrl")
+        if demo_url:
+            links_html += f' <a href="{demo_url}" class="project-link" target="_blank">[Demo &#8599;]</a>'
+        if github_url:
+            links_html += f' <a href="{github_url}" class="project-link" target="_blank">[Code &#8599;]</a>'
         projects_html += f"""
 <div class="entry">
-  <div class="row"><span class="entry-title">{_t(p["name"])}</span><span class="date">{_t(p.get("year",""))}</span></div>
+  <div class="row"><span class="entry-title">{_t(p["name"])}{links_html}</span><span class="date">{_t(p.get("year",""))}</span></div>
   <ul>{bullets}</ul>
   <div class="tech"><strong>Technologies:</strong> {tech}</div>
 </div>"""
