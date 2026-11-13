@@ -22,7 +22,7 @@ body {
 
 /* ── Section ─────────────────────────────── */
 .section { margin-bottom:7px; }
-.section-title {
+.section-title { break-after:avoid; page-break-after:avoid;
   font-size:1em; font-weight:700;
   text-transform:uppercase; letter-spacing:1.2px;
   color:#1a56a0;
@@ -35,7 +35,7 @@ body {
 .sk-label { font-weight:600; color:#1a56a0; }
 
 /* ── Entry ───────────────────────────────── */
-.entry { margin-bottom:5px; }
+.entry { margin-bottom:5px; break-inside:avoid; page-break-inside:avoid; }
 .row { display:flex; justify-content:space-between; align-items:baseline; }
 .entry-title { font-weight:700; font-size:1em; color:#111; }
 .project-link { font-size:0.82em; font-weight:500; color:#1a56a0; text-decoration:none; margin-left:5px; }

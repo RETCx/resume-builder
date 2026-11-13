@@ -65,6 +65,11 @@ def main() -> None:
         help="Explicitly set scale, e.g., 0.85 or 1.0 (default: auto)",
     )
     parser.add_argument(
+        "--cv",
+        action="store_true",
+        help="Generate comprehensive CV with all projects, certifications, and bullets",
+    )
+    parser.add_argument(
         "--no-open",
         action="store_true",
         help="Do not auto-open PDF after generation",
@@ -76,6 +81,13 @@ def main() -> None:
     )
 
     args = parser.parse_args()
+
+    if args.cv:
+        args.projects = 999
+        args.certs = 999
+        args.max_bullets = 999
+        if args.output == "output/resume.pdf":
+            args.output = "output/CV.pdf"
 
     console.print(Panel(
         "[bold]Resume Builder[/bold] — JSON -> HTML -> PDF",
